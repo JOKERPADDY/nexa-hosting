@@ -1,0 +1,63 @@
+{
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "**/releases/**",
+      "**/*.apk"
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          }
+        ]
+      },
+      {
+        "source": "/index.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "/update.json",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      }
+    ],
+    "redirects": [
+      {
+        "source": "/download",
+        "destination": "https://github.com/JOKERPADDY/NEXASTREAM2/releases/download/v1.0.15/app-debug.apk",
+        "type": 302
+      },
+      {
+        "source": "/latest.apk",
+        "destination": "https://github.com/JOKERPADDY/NEXASTREAM2/releases/download/v1.0.15/app-debug.apk",
+        "type": 302
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/update.json",
+        "destination": "/update.json"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

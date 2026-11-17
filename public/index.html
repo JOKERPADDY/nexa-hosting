@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexaStream 2 — Official Streaming Client for Phone, Tablet & Android TV</title>
+
+  <!-- SEO & Meta Tags -->
+  <meta name="description" content="NexaStream 2 is a modern, zero-ad streaming client for Android phone, tablet, and Android TV with ExoPlayer hardware acceleration and high-performance 10-foot UI.">
+  <meta name="keywords" content="NexaStream, NexaStream 2, Android TV streaming app, APK download, ExoPlayer, free streaming client, streaming app for firestick">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="NexaStream 2 — Official Streaming Client">
+  <meta property="og:description" content="Stream movies, TV shows, and live video with zero ads and robust Android TV support. Download the official APK.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nexastream.app">
+  <meta property="og:image" content="/assets/og-banner.png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            netflix: {
+              red: '#E50914',
+              redHover: '#B20710',
+              dark: '#141414',
+              card: '#1F1F1F',
+              border: '#333333',
+              grayText: '#999999'
+            }
+          },
+          boxShadow: {
+            redGlow: '0 0 25px rgba(229, 9, 20, 0.4)',
+            redGlowLg: '0 0 50px rgba(229, 9, 20, 0.25)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #141414;
+      color: #FFFFFF;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #141414;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #333333;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #E50914;
+    }
+  </style>
+</head>
+
+<body class="bg-netflix-dark text-white antialiased selection:bg-netflix-red selection:text-white">
+
+  <!-- SECTION 1: HEADER & NAVIGATION -->
+  <header class="sticky top-0 z-50 bg-netflix-dark/90 backdrop-blur-md border-b border-netflix-border/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center space-x-3 group">
+        <div class="w-10 h-10 rounded-xl bg-netflix-red flex items-center justify-center shadow-redGlow group-hover:scale-105 transition">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div>
+          <span class="text-xl font-black tracking-wider uppercase bg-gradient-to-r from-white via-gray-200 to-netflix-red bg-clip-text text-transparent">NexaStream</span>
+          <span class="text-netflix-red font-black text-xl ml-0.5">2</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-gray-300">
+        <a href="#features" class="hover:text-white transition">Features</a>
+        <a href="#categories" class="hover:text-white transition">Categories</a>
+        <a href="#screenshots" class="hover:text-white transition">Screenshots</a>
+        <a href="#release-notes" class="hover:text-white transition">Release Notes</a>
+        <a href="#installation" class="hover:text-white transition">Installation Guide</a>
+        <a href="#versions" class="hover:text-white transition">Versions</a>
+      </nav>
+
+      <!-- CTA Action Button -->
+      <div class="hidden sm:flex items-center space-x-4">
+        <span id="heroVersionTag" class="text-xs font-mono px-3 py-1.5 rounded-lg bg-netflix-card border border-netflix-border text-netflix-grayText">v1.0.15 (Code 16)</span>
+        <a href="#download" class="px-5 py-2.5 rounded-xl bg-netflix-red hover:bg-netflix-redHover text-white text-xs font-bold uppercase tracking-wider transition shadow-redGlow flex items-center space-x-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          <span>Download APK</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl bg-netflix-card text-gray-300 hover:text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+      </button>
+
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-netflix-card border-b border-netflix-border px-6 py-4 space-y-3 text-sm font-semibold">
+      <a href="#features" class="block py-2 text-gray-300 hover:text-white">Features</a>
+      <a href="#categories" class="block py-2 text-gray-300 hover:text-white">Categories</a>
+      <a href="#screenshots" class="block py-2 text-gray-300 hover:text-white">Screenshots</a>
+      <a href="#release-notes" class="block py-2 text-gray-300 hover:text-white">Release Notes</a>
+      <a href="#installation" class="block py-2 text-gray-300 hover:text-white">Installation Guide</a>
+      <a href="#versions" class="block py-2 text-gray-300 hover:text-white">Versions</a>
+      <div class="pt-2 border-t border-netflix-border flex flex-col gap-2">
+        <a href="#download" class="w-full text-center py-3 rounded-xl bg-netflix-red text-white text-xs font-bold uppercase tracking-wider shadow-redGlow">Download APK</a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- SECTION 2: HERO SECTION -->
+  <section class="relative pt-20 pb-32 overflow-hidden bg-gradient-to-b from-netflix-dark via-[#1A1111] to-netflix-dark">
+
+    <!-- Background Glow Accents -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-netflix-red/15 blur-[120px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+        <!-- Left Column: Copy & CTAs -->
+        <div class="lg:col-span-7 text-center lg:text-left">
+
+          <!-- Badge -->
+          <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-netflix-red/10 border border-netflix-red/30 text-netflix-red text-xs font-black uppercase tracking-widest mb-6 shadow-redGlow">
+            <span class="w-2 h-2 rounded-full bg-netflix-red animate-pulse"></span>
+            <span>Official v1.0.15 Release &bull; Zero Ads</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white leading-[1.1] mb-6">
+            Ultimate Streaming Experience for <span class="bg-gradient-to-r from-netflix-red via-red-500 to-orange-500 bg-clip-text text-transparent">Phone, Tablet & TV</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-netflix-grayText max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+            NexaStream 2 aggregates movies, series, and live video streams with high-performance ExoPlayer hardware acceleration, custom download quality pickers, and native 10-foot Android TV D-pad navigation.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
+            <a href="#download" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-netflix-red hover:bg-netflix-redHover text-white text-sm font-bold uppercase tracking-wider transition shadow-redGlow flex items-center justify-center space-x-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+              <span>Download APK (54.77 MB)</span>
+            </a>
+            <a href="https://t.me/NEXASTREAM2" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-netflix-card border border-netflix-border hover:bg-netflix-border text-white text-sm font-semibold transition flex items-center justify-center space-x-2">
+              <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.02 9.51c-.15.68-.55.84-1.12.52l-3.1-2.28-1.5 1.44c-.17.17-.31.31-.63.31l.22-3.17 5.77-5.21c.25-.22-.05-.34-.39-.12l-7.14 4.49-3.08-.96c-.67-.21-.68-.67.14-.99l12.03-4.64c.56-.21 1.05.13.84.86z"/></svg>
+              <span>Join Telegram Community</span>
+            </a>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="grid grid-cols-3 gap-4 pt-6 border-t border-netflix-border/60 max-w-lg mx-auto lg:mx-0 text-left">
+            <div>
+              <span class="block text-2xl font-black text-white">100%</span>
+              <span class="text-xs text-netflix-grayText font-medium">Free &amp; Open Source</span>
+            </div>
+            <div>
+              <span id="heroApkSize" class="block text-2xl font-black text-white">54.77 MB</span>
+              <span class="text-xs text-netflix-grayText font-medium">Universal APK</span>
+            </div>
+            <div>
+              <span class="block text-2xl font-black text-emerald-400">Clean</span>
+              <span class="text-xs text-netflix-grayText font-medium">VirusTotal Verified</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Hero Visual Preview Card -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="w-full max-w-md bg-netflix-card border-2 border-netflix-red/50 rounded-3xl p-6 shadow-redGlowLg relative">
+
+            <!-- Floating Top Tag -->
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-netflix-border">
+              <div class="flex items-center space-x-3">
+                <div class="w-3 h-3 rounded-full bg-netflix-red animate-ping"></div>
+                <span class="text-xs font-bold tracking-wider uppercase text-white">Live App Interface</span>
+              </div>
+              <span class="text-xs font-mono text-netflix-red bg-netflix-red/10 px-2.5 py-1 rounded-lg">v1.0.15</span>
+            </div>
+
+            <!-- Mock UI Preview Box -->
+            <div class="space-y-4">
+              <div class="h-48 rounded-2xl bg-gradient-to-tr from-black via-[#2C1515] to-netflix-card border border-netflix-border flex flex-col justify-end p-5 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-netflix-red/20 via-transparent to-transparent"></div>
+                <span class="relative z-10 text-[10px] uppercase font-bold tracking-widest text-netflix-red mb-1">Trending Series</span>
+                <h4 class="relative z-10 text-xl font-black text-white">Cyberpunk Edgerunners Season 2</h4>
+                <p class="relative z-10 text-xs text-netflix-grayText mt-1">4K HDR &bull; Dolby Atmos &bull; Multi-Audio</p>
+              </div>
+
+              <!-- Quick Action Row -->
+              <div class="grid grid-cols-2 gap-3">
+                <div class="bg-black/60 p-3.5 rounded-xl border border-netflix-border flex items-center space-x-3">
+                  <div class="w-8 h-8 rounded-lg bg-netflix-red/20 text-netflix-red flex items-center justify-center font-bold">4K</div>
+                  <div>
+                    <span class="block text-[10px] text-netflix-grayText font-medium">Quality Picker</span>
+                    <span class="text-xs font-bold text-white">Enabled</span>
+                  </div>
+                </div>
+                <div class="bg-black/60 p-3.5 rounded-xl border border-netflix-border flex items-center space-x-3">
+                  <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">✓</div>
+                  <div>
+                    <span class="block text-[10px] text-netflix-grayText font-medium">Updater Engine</span>
+                    <span class="text-xs font-bold text-white">Active</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer Note -->
+            <div class="mt-6 pt-4 border-t border-netflix-border text-center">
+              <p class="text-[11px] text-netflix-grayText">Requires Android 6.0 or higher. Tested on Firestick 4K &amp; Google TV.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 3: STREAMING CATEGORIES -->
+  <section id="categories" class="py-20 bg-netflix-card/30 border-y border-netflix-border/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-16">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-netflix-red mb-3">Content Aggregator</h2>
+        <p class="text-3xl sm:text-4xl font-black tracking-tight">Explore Endless Entertainment</p>
+        <p class="text-netflix-grayText mt-3 text-base">Stream movies, trending series, anime, and live channels in one unified client.</p>
+      </div>
+
+      <!-- Categories Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Category 1 -->
+        <div class="bg-netflix-card border border-netflix-border hover:border-netflix-red/60 p-8 rounded-2xl transition group">
+          <div class="w-12 h-12 rounded-xl bg-netflix-red/20 text-netflix-red flex items-center justify-center mb-6 group-hover:scale-110 transition">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Blockbuster Movies</h3>
+          <p class="text-sm text-netflix-grayText leading-relaxed">
+            Latest theatrical releases, timeless classics, and indie cinema streamed instantly with zero buffering.
+          </p>
+        </div>
+
+        <!-- Category 2 -->
+        <div class="bg-netflix-card border border-netflix-border hover:border-netflix-red/60 p-8 rounded-2xl transition group">
+          <div class="w-12 h-12 rounded-xl bg-netflix-red/20 text-netflix-red flex items-center justify-center mb-6 group-hover:scale-110 transition">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Binge TV Series</h3>
+          <p class="text-sm text-netflix-grayText leading-relaxed">
+            Organized seasons and unique episode identifiers for seamless binge-watching across all networks.
+          </p>
+        </div>
+
+        <!-- Category 3 -->
+        <div class="bg-netflix-card border border-netflix-border hover:border-netflix-red/60 p-8 rounded-2xl transition group">
+          <div class="w-12 h-12 rounded-xl bg-netflix-red/20 text-netflix-red flex items-center justify-center mb-6 group-hover:scale-110 transition">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Anime &amp; Animation</h3>
+          <p class="text-sm text-netflix-grayText leading-relaxed">
+            Subbed and dubbed anime series streamed directly from high-speed mirror networks with custom resolution selection.
+          </p>
+        </div>
+
+        <!-- Category 4 -->
+        <div class="bg-netflix-card border border-netflix-border hover:border-netflix-red/60 p-8 rounded-2xl transition group">
+          <div class="w-12 h-12 rounded-xl bg-netflix-red/20 text-netflix-red flex items-center justify-center mb-6 group-hover:scale-110 transition">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Live TV &amp; Sports</h3>
+          <p class="text-sm text-netflix-grayText leading-relaxed">
+            Global live streams and sports events broadcasted in high definition with low latency buffering.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION 4: APP SCREENSHOTS / UI PREVIEWS -->
+  <section id="screenshots" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-16">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-netflix-red mb-3">Visual Walkthrough</h2>
+        <p class="text-3xl sm:text-4xl font-black tracking-tight">Designed for Maximum Immersion</p>
+        <p class="text-netflix-grayText mt-3 text-base">Clean, intuitive Netflix-inspired dark interface optimized for touch and D-pad remotes.</p>
+      </div>
+
+      <!-- Screenshots Carousel / Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <!-- Shot 1 -->
+        <div class="bg-netflix-card border border-netflix-border rounded-2xl p-4 shadow-xl">
+          <div class="h-64 rounded-xl bg-gradient-to-b from-gray-900 to-black flex flex-col items-center justify-center p-6 text-center border border-netflix-border/80">
+            <div class="w-16 h-16 rounded-2xl bg-netflix-red/20 text-netflix-red flex items-center justify-center mb-4">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+            </div>
+            <h4 class="text-lg font-bold text-white mb-1">Browse &amp; Discovery Hub</h4>
+            <p class="text-xs text-netflix-grayText">Netflix-inspired cinematic carousel with instant search and category filtering.</p>
+          </div>
+        </div>
+
+        <!-- Shot 2 -->
+        <div class="bg-netflix-card border border-netflix-border rounded-2xl p-4 shadow-xl">
+          <div class="h-64 rounded-xl bg-gradient-to-b from-gray-900 to-black flex flex-col items-center justify-center p-6 text-center border border-netflix-border/80">
+            <div class="w-16 h-16 rounded-2xl bg-netflix-red/20 text-netflix-red flex items-center justify-center mb-4">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h4 class="text-lg font-bold text-white mb-1">ExoPlayer Video Engine</h4>
+            <p class="text-xs text-netflix-grayText">Hardware accelerated player with subtitle support and quality selector.</p>
+          </div>
+        </div>
+
+        <!-- Shot 3 -->
+        <div class="bg-netflix-card border border-netflix-border rounded-2xl p-4 shadow-xl">
+          <div class="h-64 rounded-xl bg-gradient-to-b from-gray-900 to-black flex flex-col items-center justify-center p-6 text-center border border-netflix-border/80">
+            <div class="w-16 h-16 rounded-2xl bg-netflix-red/20 text-netflix-red flex items-center justify-center mb-4">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            </div>
+            <h4 class="text-lg font-bold text-white mb-1">Quality &amp; Download Picker</h4>
+            <p class="text-xs text-netflix-grayText">Choose exact resolutions and inspect file sizes before offline downloading.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION 5: ADVANCED FEATURES -->
+  <section id="features" class="py-20 bg-netflix-card/30 border-t border-netflix-border/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-16">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-netflix-red mb-3">Powering NexaStream 2</h2>
+        <p class="text-3xl sm:text-4xl font-black tracking-tight">Engineered for Performance</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <!-- Feature 1 -->
+        <div class="p-8 rounded-2xl bg-netflix-card border border-netflix-border hover:border-netflix-red/60 transition">
+          <div class="w-12 h-12 rounded-xl bg-netflix-red/20 text-netflix-red flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">ExoPlayer Acceleration</h3>
+          <p class="text-sm text-netflix-grayText leading-relaxed">
+            Powered by Google's ExoPlayer with hardware video decoding, adaptive bitrate streaming, and lightning-fast seeking.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="p-8 rounded-2xl bg-netflix-card border border-netflix-border hover:border-netflix-red/60 transition">
+          <div class="w-12 h-12 rounded-xl bg-netflix-red/20 text-netflix-red flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Download Quality Picker</h3>
+          <p class="text-sm text-netflix-grayText leading-relaxed">
+            Select preferred video resolution (360p up to 4K), container formats, and inspect file sizes before offline viewing.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="p-8 rounded-2xl bg-netflix-card border border-netflix-border hover:border-netflix-red/60 transition">
+          <div class="w-12 h-12 rounded-xl bg-netflix-red/20 text-netflix-red flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Robust TV Show Metadata</h3>
+          <p class="text-sm text-netflix-grayText leading-relaxed">
+            Precise season/episode numbering, unique identifiers, and VixSrc server fallback for uninterrupted show streaming.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="p-8 rounded-2xl bg-netflix-card border border-netflix-border hover:border-netflix-red/60 transition">
+          <div class="w-12 h-12 rounded-xl bg-netflix-red/20 text-netflix-red flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Android TV Remote Native</h3>
+          <p class="text-sm text-netflix-grayText leading-relaxed">
+            Full 10-foot UI support with D-pad navigation memory, high contrast focus indicators, and fast TV controller responsiveness.
+          </p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="p-8 rounded-2xl bg-netflix-card border border-netflix-border hover:border-netflix-red/60 transition">
+          <div class="w-12 h-12 rounded-xl bg-netflix-red/20 text-netflix-red flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Smart In-App Updater</h3>
+          <p class="text-sm text-netflix-grayText leading-relaxed">
+            Non-intrusive rate-limited background update checks (1hr throttled) to keep your app updated without annoying popups.
+          </p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="p-8 rounded-2xl bg-netflix-card border border-netflix-border hover:border-netflix-red/60 transition">
+          <div class="w-12 h-12 rounded-xl bg-netflix-red/20 text-netflix-red flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Zero Registration & Zero Ads</h3>
+          <p class="text-sm text-netflix-grayText leading-relaxed">
+            No forced account logins, no credit cards, no subscriptions, and no intrusive video ads. Open the app and stream immediately.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION 6 & 7: LATEST RELEASE CARD & DIRECT DOWNLOAD HUB -->
+  <section id="download" class="py-20 relative">
+    <div id="release-notes" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Section Header -->
+      <div class="text-center mb-12">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-netflix-red mb-3">Official Build Artifact</h2>
+        <p class="text-3xl sm:text-4xl font-black tracking-tight">NexaStream 2 Release Center</p>
+        <p class="text-netflix-grayText mt-3 text-base">Verified release compiled directly from official source code.</p>
+      </div>
+
+      <!-- Release Card Box -->
+      <div class="bg-netflix-card border-2 border-netflix-red/60 rounded-3xl p-6 sm:p-10 shadow-redGlowLg relative overflow-hidden">
+
+        <!-- Header Info Row -->
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between pb-8 border-b border-netflix-border/80 gap-4">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded bg-netflix-red text-white text-xs font-black uppercase mb-2">
+              <span>LATEST STABLE</span>
+            </div>
+            <h3 class="text-3xl font-black text-white">NexaStream 2 v1.0.15</h3>
+            <p class="text-xs text-netflix-grayText mt-1">Package: <code class="text-netflix-red bg-black/50 px-2 py-0.5 rounded font-mono">com.nexastream.app</code></p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <a href="https://github.com/JOKERPADDY/NEXASTREAM2/releases/download/v1.0.15/app-debug.apk" class="px-6 py-3.5 rounded-xl bg-netflix-red hover:bg-netflix-redHover text-white text-sm font-bold uppercase tracking-wider transition shadow-redGlow flex items-center space-x-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+              <span>Download Direct APK</span>
+            </a>
+            <a href="https://dl.nexastream.app/releases/v1.0.15/nexastream-v1.0.15.apk" class="px-5 py-3.5 rounded-xl bg-netflix-border/80 hover:bg-netflix-border text-white text-sm font-semibold transition flex items-center space-x-2">
+              <svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <span>Cloudflare R2 Mirror</span>
+            </a>
+            <button onclick="openUpdateModal()" class="px-5 py-3.5 rounded-xl bg-netflix-red/20 border border-netflix-red/60 hover:bg-netflix-red/30 text-netflix-red hover:text-white text-sm font-bold transition flex items-center space-x-2 shadow-redGlow">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 01-6 0v-1m6 0H9"/></svg>
+              <span>Preview In-App Update Notice</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Metadata Spec Table -->
+        <div class="py-8 grid grid-cols-2 sm:grid-cols-4 gap-6 border-b border-netflix-border/80 text-xs">
+          <div>
+            <span class="block text-netflix-grayText font-medium mb-1">Version Name</span>
+            <span class="text-sm font-bold text-white">1.0.15</span>
+          </div>
+          <div>
+            <span class="block text-netflix-grayText font-medium mb-1">Version Code</span>
+            <span class="text-sm font-bold text-white">16</span>
+          </div>
+          <div>
+            <span class="block text-netflix-grayText font-medium mb-1">File Size</span>
+            <span class="text-sm font-bold text-netflix-red">54.77 MB</span>
+          </div>
+          <div>
+            <span class="block text-netflix-grayText font-medium mb-1">Release Date</span>
+            <span class="text-sm font-bold text-white">November 17, 2026</span>
+          </div>
+          <div>
+            <span class="block text-netflix-grayText font-medium mb-1">Target SDK</span>
+            <span class="text-sm font-bold text-white">Android 15 (API 35)</span>
+          </div>
+          <div>
+            <span class="block text-netflix-grayText font-medium mb-1">Minimum SDK</span>
+            <span class="text-sm font-bold text-white">Android 6.0 (API 23+)</span>
+          </div>
+          <div>
+            <span class="block text-netflix-grayText font-medium mb-1">Architecture</span>
+            <span class="text-sm font-bold text-white">Universal (arm64-v8a, armeabi-v7a, x86_64)</span>
+          </div>
+          <div>
+            <span class="block text-netflix-grayText font-medium mb-1">License</span>
+            <span class="text-sm font-bold text-white">Free / Open Release</span>
+          </div>
+        </div>
+
+        <!-- Cryptographic Checksum -->
+        <div class="py-6 border-b border-netflix-border/80">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-netflix-grayText flex items-center space-x-2">
+              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              <span>SHA-256 Verified Checksum</span>
+            </span>
+            <button onclick="navigator.clipboard.writeText('02F8C4DA1ECBFEC99F27E8B6AAF3283635027E11369D22CDB497B6D6D81C5FF2'); alert('SHA-256 Hash copied to clipboard!')" class="text-xs text-netflix-red hover:underline font-semibold">Copy Hash</button>
+          </div>
+          <div class="bg-black/80 p-3 rounded-xl border border-netflix-border font-mono text-[11px] text-gray-300 break-all select-all">
+            02F8C4DA1ECBFEC99F27E8B6AAF3283635027E11369D22CDB497B6D6D81C5FF2
+          </div>
+        </div>
+
+        <!-- What's New / Changelog -->
+        <div class="pt-6">
+          <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-4">Version 1.0.15 Changelog & Improvements</h4>
+          <ul class="space-y-3 text-sm text-netflix-grayText">
+            <li class="flex items-start space-x-3">
+              <span class="w-1.5 h-1.5 rounded-full bg-netflix-red mt-2 shrink-0"></span>
+              <span><strong class="text-white">In-App Update & Delivery:</strong> Upgraded build to version 1.0.15 (Code 16) with enhanced release distribution and R2 CDN endpoints.</span>
+            </li>
+            <li class="flex items-start space-x-3">
+              <span class="w-1.5 h-1.5 rounded-full bg-netflix-red mt-2 shrink-0"></span>
+              <span><strong class="text-white">Streaming Engine Optimization:</strong> Improved ExoPlayer hardware acceleration, buffering stability, and multi-source failover.</span>
+            </li>
+            <li class="flex items-start space-x-3">
+              <span class="w-1.5 h-1.5 rounded-full bg-netflix-red mt-2 shrink-0"></span>
+              <span><strong class="text-white">UI Polish & Navigation:</strong> Enhanced responsive layout and 10-foot D-pad remote memory across Android TV and Firestick devices.</span>
+            </li>
+            <li class="flex items-start space-x-3">
+              <span class="w-1.5 h-1.5 rounded-full bg-netflix-red mt-2 shrink-0"></span>
+              <span><strong class="text-white">Bug Fixes:</strong> General stability enhancements, memory cleanup, and minor UI glitch fixes.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION 8: SIMPLE INSTALLATION INSTRUCTIONS -->
+  <section id="installation" class="py-20 bg-netflix-card/30 border-y border-netflix-border/50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-16">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-netflix-red mb-3">Sideload Guide</h2>
+        <p class="text-3xl sm:text-4xl font-black tracking-tight">How to Install NexaStream 2</p>
+        <p class="text-netflix-grayText mt-3 text-base">Simple 3-step installation guide for Android Phone, Tablet, TV, and Firestick.</p>
+      </div>
+
+      <!-- Installation Steps -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+
+        <!-- Step 1 -->
+        <div class="bg-netflix-card border border-netflix-border p-8 rounded-2xl relative">
+          <div class="w-10 h-10 rounded-full bg-netflix-red text-white font-black text-lg flex items-center justify-center mb-6 shadow-redGlow">1</div>
+          <h3 class="text-lg font-bold text-white mb-2">Download APK</h3>
+          <p class="text-xs text-netflix-grayText leading-relaxed">
+            Click the <strong class="text-white">Download Direct APK</strong> button on this official website to save <code class="text-netflix-red">app-debug.apk</code> to your device.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-netflix-card border border-netflix-border p-8 rounded-2xl relative">
+          <div class="w-10 h-10 rounded-full bg-netflix-red text-white font-black text-lg flex items-center justify-center mb-6 shadow-redGlow">2</div>
+          <h3 class="text-lg font-bold text-white mb-2">Enable Unknown Apps</h3>
+          <p class="text-xs text-netflix-grayText leading-relaxed">
+            Open Android <strong class="text-white">Settings &gt; Security</strong> and enable <strong class="text-white">"Install Unknown Apps"</strong> for your web browser or file manager.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-netflix-card border border-netflix-border p-8 rounded-2xl relative">
+          <div class="w-10 h-10 rounded-full bg-netflix-red text-white font-black text-lg flex items-center justify-center mb-6 shadow-redGlow">3</div>
+          <h3 class="text-lg font-bold text-white mb-2">Install &amp; Enjoy</h3>
+          <p class="text-xs text-netflix-grayText leading-relaxed">
+            Open your downloads notification or file manager, tap <code class="text-netflix-red">app-debug.apk</code>, click <strong class="text-white">Install</strong>, and launch NexaStream 2!
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Android TV / Amazon Firestick Downloader Accordion -->
+      <div class="bg-netflix-card border border-netflix-border rounded-2xl p-6 sm:p-8">
+        <div class="flex items-center justify-between cursor-pointer" onclick="document.getElementById('tvGuideContent').classList.toggle('hidden')">
+          <div class="flex items-center space-x-4">
+            <div class="w-10 h-10 rounded-xl bg-netflix-red/20 text-netflix-red flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-white">Installing on Android TV or Amazon Firestick?</h3>
+              <p class="text-xs text-netflix-grayText">Click to expand TV Downloader app instructions</p>
+            </div>
+          </div>
+          <svg class="w-5 h-5 text-netflix-grayText" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </div>
+
+        <div id="tvGuideContent" class="hidden pt-6 mt-6 border-t border-netflix-border/80 text-xs text-netflix-grayText space-y-3">
+          <p>1. Search and install the free <strong class="text-white">Downloader</strong> app from the Google Play Store or Amazon Appstore on your TV.</p>
+          <p>2. Launch Downloader, go to Settings, and grant storage permissions.</p>
+          <p>3. In the Downloader address field, enter: <code class="text-netflix-red font-bold">https://nexastream.app/latest.apk</code> and click <strong class="text-white">Go</strong>.</p>
+          <p>4. Once downloaded, tap <strong class="text-white">Install</strong> and enjoy native remote-friendly streaming.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION 9: VERSION HISTORY TABLE -->
+  <section id="versions" class="py-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-12">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-netflix-red mb-3">Build History</h2>
+        <p class="text-3xl sm:text-4xl font-black tracking-tight">Previous Verified Releases</p>
+      </div>
+
+      <!-- Version Table -->
+      <div class="bg-netflix-card border border-netflix-border rounded-2xl overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-black/60 border-b border-netflix-border text-netflix-grayText font-bold uppercase tracking-wider">
+              <tr>
+                <th class="py-4 px-6">Version</th>
+                <th class="py-4 px-6">Build Code</th>
+                <th class="py-4 px-6">Release Date</th>
+                <th class="py-4 px-6">Size</th>
+                <th class="py-4 px-6">Status</th>
+                <th class="py-4 px-6 text-right">Download</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-netflix-border/60 text-gray-300">
+
+              <!-- Current Release -->
+              <tr class="bg-netflix-red/10">
+                <td class="py-4 px-6 font-bold text-white flex items-center space-x-2">
+                  <span>v1.0.15</span>
+                  <span class="px-2 py-0.5 rounded bg-netflix-red text-white text-[10px] font-black uppercase">Current</span>
+                </td>
+                <td class="py-4 px-6 font-mono">16</td>
+                <td class="py-4 px-6">November 17, 2026</td>
+                <td class="py-4 px-6 font-semibold text-netflix-red">54.77 MB</td>
+                <td class="py-4 px-6 text-emerald-400 font-semibold">Active Stable</td>
+                <td class="py-4 px-6 text-right">
+                  <a href="https://github.com/JOKERPADDY/NEXASTREAM2/releases/download/v1.0.15/app-debug.apk" class="px-3 py-1.5 rounded bg-netflix-red hover:bg-netflix-redHover text-white font-bold transition">Download</a>
+                </td>
+              </tr>
+
+              <!-- Previous Release v1.0.14 -->
+              <tr class="hover:bg-black/30 transition">
+                <td class="py-4 px-6 font-bold text-white">v1.0.14</td>
+                <td class="py-4 px-6 font-mono">15</td>
+                <td class="py-4 px-6">November 7, 2026</td>
+                <td class="py-4 px-6">54.66 MB</td>
+                <td class="py-4 px-6 text-netflix-grayText">Archived</td>
+                <td class="py-4 px-6 text-right">
+                  <a href="https://github.com/JOKERPADDY/NEXASTREAM2/releases/download/v1.0.14/app-debug.apk" class="px-3 py-1.5 rounded bg-netflix-border hover:bg-netflix-red text-white transition">Download</a>
+                </td>
+              </tr>
+
+              <!-- Previous Release v1.0.13 -->
+              <tr class="hover:bg-black/30 transition">
+                <td class="py-4 px-6 font-bold text-white">v1.0.13</td>
+                <td class="py-4 px-6 font-mono">14</td>
+                <td class="py-4 px-6">November 7, 2026</td>
+                <td class="py-4 px-6">54.66 MB</td>
+                <td class="py-4 px-6 text-netflix-grayText">Archived</td>
+                <td class="py-4 px-6 text-right">
+                  <a href="https://github.com/JOKERPADDY/NEXASTREAM2/releases/download/v1.0.13/app-debug.apk" class="px-3 py-1.5 rounded bg-netflix-border hover:bg-netflix-red text-white transition">Download</a>
+                </td>
+              </tr>
+
+              <!-- Previous Release v1.0.12 -->
+              <tr class="hover:bg-black/30 transition">
+                <td class="py-4 px-6 font-bold text-white">v1.0.12</td>
+                <td class="py-4 px-6 font-mono">13</td>
+                <td class="py-4 px-6">November 7, 2026</td>
+                <td class="py-4 px-6">54.66 MB</td>
+                <td class="py-4 px-6 text-netflix-grayText">Archived</td>
+                <td class="py-4 px-6 text-right">
+                  <a href="https://github.com/JOKERPADDY/NEXASTREAM2/releases/download/v1.0.12/app-debug.apk" class="px-3 py-1.5 rounded bg-netflix-border hover:bg-netflix-red text-white transition">Download</a>
+                </td>
+              </tr>
+
+              <!-- Previous Release v1.0.11 -->
+              <tr class="hover:bg-black/30 transition">
+                <td class="py-4 px-6 font-bold text-white">v1.0.11</td>
+                <td class="py-4 px-6 font-mono">12</td>
+                <td class="py-4 px-6">October 19, 2026</td>
+                <td class="py-4 px-6">55.02 MB</td>
+                <td class="py-4 px-6 text-netflix-grayText">Archived</td>
+                <td class="py-4 px-6 text-right">
+                  <a href="https://github.com/JOKERPADDY/NEXASTREAM2/releases/download/v1.0.11/app-debug.apk" class="px-3 py-1.5 rounded bg-netflix-border hover:bg-netflix-red text-white transition">Download</a>
+                </td>
+              </tr>
+
+              <!-- Previous Release v1.0.7 -->
+              <tr class="hover:bg-black/30 transition">
+                <td class="py-4 px-6 font-bold text-white">v1.0.7</td>
+                <td class="py-4 px-6 font-mono">8</td>
+                <td class="py-4 px-6">September 2026</td>
+                <td class="py-4 px-6">54.10 MB</td>
+                <td class="py-4 px-6 text-netflix-grayText">Archived</td>
+                <td class="py-4 px-6 text-right">
+                  <a href="https://github.com/JOKERPADDY/NEXASTREAM2/releases/download/v1.0.7/app-debug.apk" class="px-3 py-1.5 rounded bg-netflix-border hover:bg-netflix-red text-white transition">Download</a>
+                </td>
+              </tr>
+
+              <!-- Previous Release v1.0.6 -->
+              <tr class="hover:bg-black/30 transition">
+                <td class="py-4 px-6 font-bold text-white">v1.0.6</td>
+                <td class="py-4 px-6 font-mono">7</td>
+                <td class="py-4 px-6">August 2026</td>
+                <td class="py-4 px-6">53.80 MB</td>
+                <td class="py-4 px-6 text-netflix-grayText">Archived</td>
+                <td class="py-4 px-6 text-right">
+                  <a href="https://github.com/JOKERPADDY/NEXASTREAM2/releases/download/v1.0.6/app-debug.apk" class="px-3 py-1.5 rounded bg-netflix-border hover:bg-netflix-red text-white transition">Download</a>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION 10: FOOTER -->
+  <footer class="bg-black border-t border-netflix-border py-16 text-xs text-netflix-grayText">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+
+        <!-- Brand Info -->
+        <div class="md:col-span-2">
+          <img src="/assets/logo.svg" alt="NexaStream 2 Logo" class="h-8 w-auto mb-4">
+          <p class="text-netflix-grayText max-w-sm leading-relaxed mb-4">
+            NexaStream 2 is a modern open Android streaming client designed for phone, tablet, and Android TV performance. Aggregating multi-provider content with ExoPlayer hardware acceleration.
+          </p>
+          <div class="flex items-center space-x-4 text-white">
+            <a href="https://t.me/NEXASTREAM2" target="_blank" rel="noopener noreferrer" class="hover:text-netflix-red transition flex items-center space-x-1.5">
+              <svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.02 9.51c-.15.68-.55.84-1.12.52l-3.1-2.28-1.5 1.44c-.17.17-.31.31-.63.31l.22-3.17 5.77-5.21c.25-.22-.05-.34-.39-.12l-7.14 4.49-3.08-.96c-.67-.21-.68-.67.14-.99l12.03-4.64c.56-.21 1.05.13.84.86z"/></svg>
+              <span>Telegram Channel</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Quick Navigation</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#features" class="hover:text-white transition">App Features</a></li>
+            <li><a href="#categories" class="hover:text-white transition">Streaming Categories</a></li>
+            <li><a href="#screenshots" class="hover:text-white transition">App Screenshots</a></li>
+            <li><a href="#release-notes" class="hover:text-white transition">v1.0.15 Release Notes</a></li>
+            <li><a href="#installation" class="hover:text-white transition">Sideload Guide</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal & Verification -->
+        <div>
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Legal &amp; Security</h4>
+          <ul class="space-y-2.5">
+            <li><a href="/update.json" target="_blank" class="hover:text-white transition">In-App Update API (update.json)</a></li>
+            <li><button onclick="alert('DMCA Policy: NexaStream 2 does not host media content on its servers. All streams are scraped from third-party public web indexes. For DMCA requests, contact support@nexastream.app')" class="hover:text-white transition text-left">DMCA Disclaimer</button></li>
+            <li><button onclick="alert('Privacy Policy: NexaStream 2 does not track user identities, collect personal information, or sell user telemetry. All watch history and favorites remain on device local storage.')" class="hover:text-white transition text-left">Privacy Policy</button></li>
+            <li><span class="text-emerald-400 font-semibold">✔ VirusTotal Clean</span></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 border-t border-netflix-border/60 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p>&copy; 2026 NexaStream Team. Developed by THWAYNESHOP. All rights reserved.</p>
+        <p class="text-[11px] text-netflix-grayText">Designed for Cloudflare Pages &amp; R2 Edge Distribution.</p>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- Interactive In-App Update Notice Preview Modal -->
+  <div id="updateModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="bg-netflix-card border-2 border-netflix-red rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-redGlowLg relative animate-fade-in">
+
+      <!-- Close Button -->
+      <button onclick="closeUpdateModal()" class="absolute top-4 right-4 text-netflix-grayText hover:text-white p-2 transition">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="text-center mb-6">
+        <div class="w-14 h-14 rounded-full bg-netflix-red/20 text-netflix-red mx-auto flex items-center justify-center mb-3 shadow-redGlow">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        </div>
+        <h3 class="text-2xl font-black text-white tracking-wide">UPDATE AVAILABLE</h3>
+        <p class="text-xs text-netflix-grayText mt-1">A new version of NexaStream 2 is ready to install</p>
+      </div>
+
+      <!-- Version Comparison Box -->
+      <div class="bg-black/90 rounded-2xl p-4 border border-netflix-border/80 flex items-center justify-around mb-6 text-center">
+        <div>
+          <span class="block text-[10px] text-netflix-grayText uppercase font-bold tracking-wider mb-1">Current Version</span>
+          <span class="text-xl font-black text-white font-mono">v1.0.14</span>
+        </div>
+        <div class="w-8 h-8 rounded-full bg-netflix-red/20 text-netflix-red flex items-center justify-center">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </div>
+        <div>
+          <span class="block text-[10px] text-netflix-red uppercase font-bold tracking-wider mb-1">New Version</span>
+          <span class="text-xl font-black text-emerald-400 font-mono">v1.0.15</span>
+        </div>
+      </div>
+
+      <!-- Release Notes Box -->
+      <div class="bg-black/60 rounded-xl p-4 border border-netflix-border/60 mb-6 text-xs text-netflix-grayText space-y-2 max-h-48 overflow-y-auto">
+        <p class="font-bold text-white text-sm mb-1">What's New in v1.0.15:</p>
+        <p>• In-App Update &amp; Delivery: Upgraded build to version 1.0.15 (Code 16) with enhanced release distribution.</p>
+        <p>• Streaming Engine Optimization: Improved ExoPlayer hardware acceleration and buffering stability.</p>
+        <p>• Bug Fixes &amp; General Enhancements.</p>
+        <div class="pt-2 border-t border-netflix-border/60 space-y-1">
+          <p class="text-netflix-red font-semibold">🌐 Or download through our website: <a href="http://localhost:8080" target="_blank" class="underline text-white hover:text-netflix-red">http://localhost:8080</a></p>
+          <p class="text-blue-400 font-semibold">💬 Join our Telegram: <a href="https://t.me/NEXASTREAM2" target="_blank" class="underline text-white hover:text-blue-400">https://t.me/NEXASTREAM2</a></p>
+        </div>
+      </div>
+
+      <!-- Simulated Download Progress Bar -->
+      <div id="simulatedProgressContainer" class="hidden mb-6">
+        <div class="flex justify-between text-xs font-bold mb-1.5">
+          <span class="text-white flex items-center space-x-1.5">
+            <span class="w-2 h-2 rounded-full bg-netflix-red animate-ping"></span>
+            <span>Downloading Update Package...</span>
+          </span>
+          <span id="simulatedPercentText" class="text-netflix-red font-mono">0%</span>
+        </div>
+        <div class="w-full bg-black rounded-full h-3 border border-netflix-border overflow-hidden">
+          <div id="simulatedProgressBar" class="bg-gradient-to-r from-netflix-red to-emerald-400 h-full w-0 transition-all duration-150"></div>
+        </div>
+      </div>
+
+      <!-- Modal Action Buttons -->
+      <div class="flex items-center gap-3">
+        <button onclick="closeUpdateModal()" class="w-1/2 py-3.5 rounded-xl bg-netflix-border/80 hover:bg-netflix-border text-white text-xs font-bold uppercase tracking-wider transition">LATER</button>
+        <button onclick="startSimulatedUpdate()" id="btnSimulateUpdate" class="w-1/2 py-3.5 rounded-xl bg-netflix-red hover:bg-netflix-redHover text-white text-xs font-bold uppercase tracking-wider transition shadow-redGlow">UPDATE NOW</button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Live InAppUpdater Check Logic & Dynamic Header Script -->
+  <script>
+    // Toggle Mobile Navigation Menu
+    document.getElementById('mobileMenuBtn')?.addEventListener('click', function() {
+      const menu = document.getElementById('mobileMenu');
+      if (menu) menu.classList.toggle('hidden');
+    });
+
+    // Modal Control Functions
+    function openUpdateModal() {
+      const modal = document.getElementById('updateModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeUpdateModal() {
+      const modal = document.getElementById('updateModal');
+      if (modal) modal.classList.add('hidden');
+      resetSimulatedProgress();
+    }
+
+    let progressInterval = null;
+    function startSimulatedUpdate() {
+      const progressContainer = document.getElementById('simulatedProgressContainer');
+      const progressBar = document.getElementById('simulatedProgressBar');
+      const percentText = document.getElementById('simulatedPercentText');
+      const updateBtn = document.getElementById('btnSimulateUpdate');
+
+      if (!progressContainer || !progressBar || !percentText) return;
+
+      progressContainer.classList.remove('hidden');
+      if (updateBtn) updateBtn.disabled = true;
+
+      let currentPercent = 0;
+      clearInterval(progressInterval);
+
+      progressInterval = setInterval(() => {
+        currentPercent += Math.floor(Math.random() * 12) + 5;
+        if (currentPercent >= 100) {
+          currentPercent = 100;
+          clearInterval(progressInterval);
+          percentText.textContent = '100% (Ready to Install)';
+          progressBar.style.width = '100%';
+          setTimeout(() => {
+            alert('Simulation Complete: On Android, the app now launches the package installer automatically to update to v1.0.15!');
+            closeUpdateModal();
+          }, 400);
+        } else {
+          percentText.textContent = `${currentPercent}%`;
+          progressBar.style.width = `${currentPercent}%`;
+        }
+      }, 200);
+    }
+
+    function resetSimulatedProgress() {
+      clearInterval(progressInterval);
+      const progressContainer = document.getElementById('simulatedProgressContainer');
+      const progressBar = document.getElementById('simulatedProgressBar');
+      const percentText = document.getElementById('simulatedPercentText');
+      const updateBtn = document.getElementById('btnSimulateUpdate');
+
+      if (progressContainer) progressContainer.classList.add('hidden');
+      if (progressBar) progressBar.style.width = '0%';
+      if (percentText) percentText.textContent = '0%';
+      if (updateBtn) updateBtn.disabled = false;
+    }
+
+    // Client-Side Sync with /update.json
+    async function syncReleaseMetadata() {
+      try {
+        const response = await fetch('/update.json');
+        if (response.ok) {
+          const data = await response.json();
+          if (data.versionName) {
+            const versionTags = document.querySelectorAll('#heroVersionTag');
+            versionTags.forEach(el => el.textContent = `v${data.versionName} (Code ${data.versionCode})`);
+          }
+          if (data.apkSize) {
+            const apkSizeEl = document.getElementById('heroApkSize');
+            if (apkSizeEl) apkSizeEl.textContent = data.apkSize;
+          }
+        }
+      } catch (err) {
+        console.log('Update JSON fetch fallback active:', err);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', syncReleaseMetadata);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+name = "nexastream-download-site"
+pages_build_output_dir = "./public"
+compatibility_date = "2026-10-19"
+
+# Cloudflare R2 Bucket Binding for high-performance direct APK hosting
+[[r2_buckets]]
+binding = "APK_BUCKET"
+bucket_name = "nexastream-apks"
+
+[site]
+bucket = "./public"
