@@ -1,19 +1,19 @@
-export async function onRequest(context) {
+﻿export async function onRequest(context) {
   const updateData = {
-    versionCode: 16,
-    versionName: "1.0.15",
-    apkUrl: "https://github.com/JOKERPADDY/NEXASTREAM2/releases/download/v1.0.15/app-debug.apk",
-    r2ApkUrl: "https://dl.nexastream.app/releases/v1.0.15/nexastream-v1.0.15.apk",
+    versionCode: 22,
+    versionName: "1.0.21",
+    apkUrl: "https://github.com/JOKERPADDY/NEXASTREAM2/releases/download/v1.0.21/app-debug.apk",
+    r2ApkUrl: "https://dl.nexastream.app/releases/v1.0.21/nexastream-v1.0.21.apk",
     websiteUrl: "https://nexastream-73801.web.app",
-    apkSize: "54.77 MB",
-    apkSizeBytes": 57425723,
-    sha256: "02F8C4DA1ECBFEC99F27E8B6AAF3283635027E11369D22CDB497B6D6D81C5FF2",
+    apkSize: "54.81 MB",
+    apkSizeBytes": 57470935,
+    sha256: "66F6E30B8F3BC518F3524D0BA9DBEB205769690D99D5B424B33BB51FF29F16FB",
     minSdk: "Android 6.0 (API 23+)",
     targetSdk: "Android 15 (API 35)",
-    releaseDate: "November 17, 2026",
-    changelog: "1. Performance & Stability Improvements: Optimized UI components and state management.\n2. In-App Updates & Delivery: Upgraded build target to v1.0.15 with enhanced streaming integration.\n3. Bug Fixes & General Enhancements.\n\n🌐 Or download through our website: https://nexastream-73801.web.app\n💬 Join our Telegram: https://t.me/NEXASTREAM2",
-    forceUpdate": false,
-    supportTelegramUrl": "https://t.me/NEXASTREAM2"
+    releaseDate: "November 22, 2026",
+    changelog: "1. Performance & Stability Improvements: Optimized UI components and state management.\n2. In-App Updates & Delivery: Upgraded build target to v1.0.21 with enhanced streaming integration.\n3. Bug Fixes & General Enhancements.\n\n🌐 Or download through our website: https://nexastream-73801.web.app\n💬 Join our Telegram: https://t.me/NEXASTREAM2",
+    forceUpdate: false,
+    supportTelegramUrl: "https://t.me/NEXASTREAM2"
   };
 
   return new Response(JSON.stringify(updateData, null, 2), {

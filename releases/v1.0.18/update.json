@@ -1,0 +1,16 @@
+{
+  "versionCode": 19,
+  "versionName": "1.0.18",
+  "apkUrl": "https://github.com/JOKERPADDY/NEXASTREAM2/releases/download/v1.0.18/app-debug.apk",
+  "r2ApkUrl": "https://dl.nexastream.app/releases/v1.0.18/nexastream-v1.0.18.apk",
+  "websiteUrl": "https://nexastream-73801.web.app",
+  "apkSize": "54.66 MB",
+  "apkSizeBytes": 57310879,
+  "sha256": "A4E62E5A64BC2D76FF1A51BF64B72790A2CD26C75F4C881293A3EF07EB2F0A85",
+  "minSdk": "Android 6.0 (API 23+)",
+  "targetSdk": "Android 15 (API 35)",
+  "releaseDate": "November 7, 2026",
+  "changelog": "1. Performance & Stability Improvements: Optimized UI components and state management.\n2. In-App Updates & Delivery: Upgraded build target to v1.0.15 with enhanced streaming integration.\n3. Bug Fixes & General Enhancements.\n\n🌐 Or download through our website: https://nexastream-73801.web.app\n💬 Join our Telegram: https://t.me/NEXASTREAM2",
+  "forceUpdate": false,
+  "supportTelegramUrl": "https://t.me/NEXASTREAM2"
+}

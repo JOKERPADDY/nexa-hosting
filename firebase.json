@@ -1,4 +1,4 @@
-{
+﻿{
   "hosting": {
     "public": "public",
     "ignore": [
@@ -40,12 +40,12 @@
     "redirects": [
       {
         "source": "/download",
-        "destination": "https://github.com/JOKERPADDY/NEXASTREAM2/releases/download/v1.0.15/app-debug.apk",
+        "destination": "https://github.com/JOKERPADDY/NEXASTREAM2/releases/download/v1.0.21/app-debug.apk",
         "type": 302
       },
       {
         "source": "/latest.apk",
-        "destination": "https://github.com/JOKERPADDY/NEXASTREAM2/releases/download/v1.0.15/app-debug.apk",
+        "destination": "https://github.com/JOKERPADDY/NEXASTREAM2/releases/download/v1.0.21/app-debug.apk",
         "type": 302
       }
     ],
@@ -61,3 +61,4 @@
     ]
   }
 }
+
